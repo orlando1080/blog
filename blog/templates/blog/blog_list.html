@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h1 class="display-5">All Blogs</h1>
+    {% if blog_list %}
+        <ul class="list-group">
+            {% for blog in blog_list %}
+                <li class="list-group-item"><a href="{{ blog.get_absolute_url }}" style="text-decoration:none">
+                    {{ blog.title }}</a> ({{ blog.post_date|date:"d b, Y" }}) - <a href="{{ blog.blogger.get_absolute_url }}"
+                                                                     style="text-decoration:none">{{ blog.blogger.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="lead">There are no entries.</p>
+    {% endif %}
+
+{% endblock %}

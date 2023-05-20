@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <p>Post your comment for: <a href="{% url 'blog_detail' blog.pk %}" style="text-decoration:none">{{ blog.title }}<a/></p>
+        <form action="" method="post">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <p>Enter comment for blog here.</p>
+            <input type="submit" value="Submit" />
+        </form>
+    {% else %}
+        <p>Please login to see this page.</p>
+    {% endif %}
+{% endblock %}
